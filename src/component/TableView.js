@@ -3,6 +3,7 @@ import { Table, Tag, Space, Button } from 'antd';
 import 'antd/dist/antd.css';
 import { getData } from '../redux/actions'
 import { connect } from "react-redux";
+import './table.css'
 function TableView({ fetchcoins, data }) {
     React.useEffect(() => {
         fetchcoins()
@@ -96,8 +97,7 @@ function TableView({ fetchcoins, data }) {
         setCoinDataIndex(coinDataIndex + 50)
     }
     return (
-        <div>
-            <div className="App">
+            <div className="table">
                 {data?.errorMessage
                     ? <h2>Please Try again</h2>
                     : <Table columns={columns} dataSource={data?.data?.slice(0, coinDataIndex)} loading={data?.loading} pagination={false}
@@ -106,7 +106,6 @@ function TableView({ fetchcoins, data }) {
                 }
                 {coinDataIndex < data?.data?.length && <Button type="primary" block onClick={updateTable} >Load More</Button>}
             </div>
-        </div>
     )
 }
 function mapStateToProps(state) {
